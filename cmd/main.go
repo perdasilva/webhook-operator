@@ -35,8 +35,8 @@ import (
 	metricsserver "sigs.k8s.io/controller-runtime/pkg/metrics/server"
 	"sigs.k8s.io/controller-runtime/pkg/webhook"
 
-	webhookv1 "github.com/perdasilva/webhook-operator/api/v1"
-	webhookv2 "github.com/perdasilva/webhook-operator/api/v2"
+	apiv1 "github.com/perdasilva/webhook-operator/api/v1"
+	apiv2 "github.com/perdasilva/webhook-operator/api/v2"
 	"github.com/perdasilva/webhook-operator/internal/controller"
 	webhookv1 "github.com/perdasilva/webhook-operator/internal/webhook/v1"
 	// +kubebuilder:scaffold:imports
@@ -50,8 +50,8 @@ var (
 func init() {
 	utilruntime.Must(clientgoscheme.AddToScheme(scheme))
 
-	utilruntime.Must(webhookv1.AddToScheme(scheme))
-	utilruntime.Must(webhookv2.AddToScheme(scheme))
+	utilruntime.Must(apiv1.AddToScheme(scheme))
+	utilruntime.Must(apiv2.AddToScheme(scheme))
 	// +kubebuilder:scaffold:scheme
 }
 
@@ -113,7 +113,8 @@ func main() {
 
 	if len(webhookCertPath) > 0 {
 		setupLog.Info("Initializing webhook certificate watcher using provided certificates",
-			"webhook-cert-path", webhookCertPath, "webhook-cert-name", webhookCertName, "webhook-cert-key", webhookCertKey)
+			"webhook-cert-path", webhookCertPath,
+			"webhook-cert-name", webhookCertName, "webhook-cert-key", webhookCertKey)
 
 		webhookServerOptions.CertDir = webhookCertPath
 		webhookServerOptions.CertName = webhookCertName
@@ -150,7 +151,8 @@ func main() {
 	// - [PROMETHEUS-WITH-CERTS] at config/prometheus/kustomization.yaml for TLS certification.
 	if len(metricsCertPath) > 0 {
 		setupLog.Info("Initializing metrics certificate watcher using provided certificates",
-			"metrics-cert-path", metricsCertPath, "metrics-cert-name", metricsCertName, "metrics-cert-key", metricsCertKey)
+			"metrics-cert-path", metricsCertPath,
+			"metrics-cert-name", metricsCertName, "metrics-cert-key", metricsCertKey)
 
 		metricsServerOptions.CertDir = metricsCertPath
 		metricsServerOptions.CertName = metricsCertName

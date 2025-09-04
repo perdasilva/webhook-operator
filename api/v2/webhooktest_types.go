@@ -30,9 +30,17 @@ type WebhookTestSpec struct {
 	// The following markers will use OpenAPI v3 schema to validate the value
 	// More info: https://book.kubebuilder.io/reference/markers/crd-validation.html
 
-	// foo is an example field of WebhookTest. Edit webhooktest_types.go to remove/update
+	// Conversion is an example field of WebhookTest. Edit WebhookTest_types.go to remove/update
+	Conversion Conversion `json:"conversion"`
+}
+
+type Conversion struct {
+	// Valid must be set to true or the validation webhook will reject the resource.
+	Valid bool `json:"valid"`
+
+	// Mutate is a field that will be set to true by the mutating webhook.
 	// +optional
-	Foo *string `json:"foo,omitempty"`
+	Mutate bool `json:"mutate,omitempty"`
 }
 
 // WebhookTestStatus defines the observed state of WebhookTest.

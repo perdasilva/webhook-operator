@@ -39,10 +39,16 @@ spec:
           spec:
             description: spec defines the desired state of WebhookTest
             properties:
-              foo:
-                description: foo is an example field of WebhookTest. Edit webhooktest_types.go
-                  to remove/update
-                type: string
+              mutate:
+                description: Mutate is a field that will be set to true by the mutating
+                  webhook.
+                type: boolean
+              valid:
+                description: Valid must be set to true or the validation webhook will
+                  reject the resource.
+                type: boolean
+            required:
+            - valid
             type: object
           status:
             description: status defines the observed state of WebhookTest
@@ -149,10 +155,23 @@ spec:
           spec:
             description: spec defines the desired state of WebhookTest
             properties:
-              foo:
-                description: foo is an example field of WebhookTest. Edit webhooktest_types.go
+              conversion:
+                description: Conversion is an example field of WebhookTest. Edit WebhookTest_types.go
                   to remove/update
-                type: string
+                properties:
+                  mutate:
+                    description: Mutate is a field that will be set to true by the
+                      mutating webhook.
+                    type: boolean
+                  valid:
+                    description: Valid must be set to true or the validation webhook
+                      will reject the resource.
+                    type: boolean
+                required:
+                - valid
+                type: object
+            required:
+            - conversion
             type: object
           status:
             description: status defines the observed state of WebhookTest
