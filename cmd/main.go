@@ -38,6 +38,7 @@ import (
 	webhookv1 "github.com/perdasilva/webhook-operator/api/v1"
 	webhookv2 "github.com/perdasilva/webhook-operator/api/v2"
 	"github.com/perdasilva/webhook-operator/internal/controller"
+	webhookv1 "github.com/perdasilva/webhook-operator/internal/webhook/v1"
 	// +kubebuilder:scaffold:imports
 )
 
@@ -186,6 +187,13 @@ func main() {
 	}).SetupWithManager(mgr); err != nil {
 		setupLog.Error(err, "unable to create controller", "controller", "WebhookTest")
 		os.Exit(1)
+	}
+	// nolint:goconst
+	if os.Getenv("ENABLE_WEBHOOKS") != "false" {
+		if err := webhookv1.SetupWebhookTestWebhookWithManager(mgr); err != nil {
+			setupLog.Error(err, "unable to create webhook", "webhook", "WebhookTest")
+			os.Exit(1)
+		}
 	}
 	// +kubebuilder:scaffold:builder
 
