@@ -1,0 +1,55 @@
+apiVersion: operators.coreos.com/v1alpha1
+kind: ClusterServiceVersion
+metadata:
+  annotations:
+    alm-examples: '[]'
+    capabilities: Basic Install
+    operators.operatorframework.io/builder: operator-sdk-v1.0.0
+    operators.operatorframework.io/project_layout: go
+  name: webhook-operator.v0.0.0
+  namespace: placeholder
+spec:
+  apiservicedefinitions: {}
+  customresourcedefinitions:
+    owned:
+    - description: WebhookTest is the Schema for the webhooktests API
+      displayName: Webhook Test
+      kind: WebhookTest
+      name: webhooktests.webhook.operators.coreos.io
+      version: v2
+    - description: WebhookTest is the Schema for the webhooktests API
+      displayName: Webhook Test
+      kind: WebhookTest
+      name: webhooktests.webhook.operators.coreos.io
+      version: v1
+  description: Webhook Operator description. TODO.
+  displayName: Webhook Operator
+  icon:
+  - base64data: ""
+    mediatype: ""
+  install:
+    spec:
+      deployments: null
+    strategy: ""
+  installModes:
+  - supported: false
+    type: OwnNamespace
+  - supported: false
+    type: SingleNamespace
+  - supported: false
+    type: MultiNamespace
+  - supported: true
+    type: AllNamespaces
+  keywords:
+  - webhook-operator
+  links:
+  - name: Webhook Operator
+    url: https://webhook-operator.domain
+  maintainers:
+  - email: your@email.com
+    name: Maintainer Name
+  maturity: alpha
+  provider:
+    name: Provider Name
+    url: https://your.domain
+  version: 0.0.0
