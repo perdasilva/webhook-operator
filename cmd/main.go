@@ -36,6 +36,7 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/webhook"
 
 	webhookv1 "github.com/perdasilva/webhook-operator/api/v1"
+	webhookv2 "github.com/perdasilva/webhook-operator/api/v2"
 	"github.com/perdasilva/webhook-operator/internal/controller"
 	// +kubebuilder:scaffold:imports
 )
@@ -49,6 +50,7 @@ func init() {
 	utilruntime.Must(clientgoscheme.AddToScheme(scheme))
 
 	utilruntime.Must(webhookv1.AddToScheme(scheme))
+	utilruntime.Must(webhookv2.AddToScheme(scheme))
 	// +kubebuilder:scaffold:scheme
 }
 
