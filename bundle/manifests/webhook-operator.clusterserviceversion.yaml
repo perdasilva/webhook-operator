@@ -30,10 +30,10 @@ metadata:
         }
       ]
     capabilities: Basic Install
-    createdAt: "2025-09-04T11:25:36Z"
+    createdAt: "2025-09-04T14:45:08Z"
     operators.operatorframework.io/builder: operator-sdk-v1.40.0+git
     operators.operatorframework.io/project_layout: go.kubebuilder.io/v4
-  name: webhook-operator.v0.0.1
+  name: webhook-operator.v0.0.4
   namespace: placeholder
 spec:
   apiservicedefinitions: {}
@@ -120,13 +120,12 @@ spec:
             spec:
               containers:
               - args:
-                - --metrics-bind-address=:8443
                 - --leader-elect
                 - --health-probe-bind-address=:8081
                 - --webhook-cert-path=/tmp/k8s-webhook-server/serving-certs
                 command:
                 - /manager
-                image: controller:latest
+                image: quay.io/olmtest/webhook-operator:0.0.4
                 livenessProbe:
                   httpGet:
                     path: /healthz
@@ -227,7 +226,7 @@ spec:
   provider:
     name: Provider Name
     url: https://your.domain
-  version: 0.0.1
+  version: 0.0.4
   webhookdefinitions:
   - admissionReviewVersions:
     - v1

@@ -1,7 +1,7 @@
 # Current Operator version
-VERSION ?= 0.0.1
+VERSION ?= 0.0.4
 # Default bundle image tag
-BUNDLE_IMG ?= quay.io/agreene/webhook-operator-bundle:latest
+BUNDLE_IMG ?= quay.io/olmtest/webhook-operator-bundle:$(VERSION)
 # Options for 'bundle-build'
 ifneq ($(origin CHANNELS), undefined)
 BUNDLE_CHANNELS := --channels=$(CHANNELS)
@@ -12,7 +12,7 @@ endif
 BUNDLE_METADATA_OPTS ?= $(BUNDLE_CHANNELS) $(BUNDLE_DEFAULT_CHANNEL)
 
 # Image URL to use all building/pushing image targets
-IMG ?= controller:latest
+IMG ?= quay.io/olmtest/webhook-operator:$(VERSION)
 
 # Get the currently used golang install path (in GOPATH/bin, unless GOBIN is set)
 ifeq (,$(shell go env GOBIN))
