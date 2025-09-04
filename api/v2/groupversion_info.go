@@ -1,5 +1,5 @@
 /*
-
+Copyright 2025.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-// Package v2 contains API Schema definitions for the webhook v2 API group
+// Package v2 contains API Schema definitions for the webhook v2 API group.
 // +kubebuilder:object:generate=true
 // +groupName=webhook.operators.coreos.io
 package v2
@@ -25,10 +25,10 @@ import (
 )
 
 var (
-	// GroupVersion is group version used to register these objects
+	// GroupVersion is group version used to register these objects.
 	GroupVersion = schema.GroupVersion{Group: "webhook.operators.coreos.io", Version: "v2"}
 
-	// SchemeBuilder is used to add go types to the GroupVersionKind scheme
+	// SchemeBuilder is used to add go types to the GroupVersionKind scheme.
 	SchemeBuilder = &scheme.Builder{GroupVersion: GroupVersion}
 
 	// AddToScheme adds the types in this group-version to the given scheme.

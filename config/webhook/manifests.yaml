@@ -1,19 +1,18 @@
-
 ---
-apiVersion: admissionregistration.k8s.io/v1beta1
+apiVersion: admissionregistration.k8s.io/v1
 kind: MutatingWebhookConfiguration
 metadata:
-  creationTimestamp: null
   name: mutating-webhook-configuration
 webhooks:
-- clientConfig:
-    caBundle: Cg==
+- admissionReviewVersions:
+  - v1
+  clientConfig:
     service:
       name: webhook-service
       namespace: system
       path: /mutate-webhook-operators-coreos-io-v1-webhooktest
   failurePolicy: Fail
-  name: mwebhooktest.kb.io
+  name: mwebhooktest-v1.kb.io
   rules:
   - apiGroups:
     - webhook.operators.coreos.io
@@ -24,22 +23,22 @@ webhooks:
     - UPDATE
     resources:
     - webhooktests
-
+  sideEffects: None
 ---
-apiVersion: admissionregistration.k8s.io/v1beta1
+apiVersion: admissionregistration.k8s.io/v1
 kind: ValidatingWebhookConfiguration
 metadata:
-  creationTimestamp: null
   name: validating-webhook-configuration
 webhooks:
-- clientConfig:
-    caBundle: Cg==
+- admissionReviewVersions:
+  - v1
+  clientConfig:
     service:
       name: webhook-service
       namespace: system
       path: /validate-webhook-operators-coreos-io-v1-webhooktest
   failurePolicy: Fail
-  name: vwebhooktest.kb.io
+  name: vwebhooktest-v1.kb.io
   rules:
   - apiGroups:
     - webhook.operators.coreos.io
@@ -50,3 +49,4 @@ webhooks:
     - UPDATE
     resources:
     - webhooktests
+  sideEffects: None

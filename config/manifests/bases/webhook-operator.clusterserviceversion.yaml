@@ -6,11 +6,22 @@ metadata:
     capabilities: Basic Install
     operators.operatorframework.io/builder: operator-sdk-v1.0.0
     operators.operatorframework.io/project_layout: go
-  name: webhook-operator.vX.Y.Z
+  name: webhook-operator.v0.0.0
   namespace: placeholder
 spec:
   apiservicedefinitions: {}
-  customresourcedefinitions: {}
+  customresourcedefinitions:
+    owned:
+    - description: WebhookTest is the Schema for the webhooktests API
+      displayName: Webhook Test
+      kind: WebhookTest
+      name: webhooktests.webhook.operators.coreos.io
+      version: v2
+    - description: WebhookTest is the Schema for the webhooktests API
+      displayName: Webhook Test
+      kind: WebhookTest
+      name: webhooktests.webhook.operators.coreos.io
+      version: v1
   description: Webhook Operator description. TODO.
   displayName: Webhook Operator
   icon:
@@ -21,9 +32,9 @@ spec:
       deployments: null
     strategy: ""
   installModes:
-  - supported: true
+  - supported: false
     type: OwnNamespace
-  - supported: true
+  - supported: false
     type: SingleNamespace
   - supported: false
     type: MultiNamespace
