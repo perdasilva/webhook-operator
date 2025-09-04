@@ -1,0 +1,9 @@
+apiVersion: webhook.operators.coreos.io/v1
+kind: WebhookTest
+metadata:
+  labels:
+    app.kubernetes.io/name: webhook-operator
+    app.kubernetes.io/managed-by: kustomize
+  name: webhooktest-sample
+spec:
+  # TODO(user): Add fields here
