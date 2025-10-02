@@ -128,7 +128,7 @@ tidy:
 	go mod tidy
 
 .PHONY: verify
-verify: tidy fmt manifests generate
+verify: tidy fmt bundle catalog manifests generate
 	git diff --exit-code
 
 # TODO(user): To use a different vendor for e2e tests, modify the setup under 'tests/e2e'.
