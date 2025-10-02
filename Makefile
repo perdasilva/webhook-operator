@@ -128,7 +128,7 @@ tidy:
 	go mod tidy
 
 .PHONY: verify
-verify: tidy fmt bundle catalog manifests generate
+verify: tidy manifests generate bundle catalog fmt
 	git diff --exit-code
 
 # TODO(user): To use a different vendor for e2e tests, modify the setup under 'tests/e2e'.
@@ -303,5 +303,5 @@ export ENABLE_RELEASE_PIPELINE
 export GORELEASER_ARGS
 
 .PHONY: release
-release: $(GORELEASER) bundle catalog #EXHELP Runs goreleaser. By default, this will run only as a snapshot and will not publish any artifacts unless it is run with different arguments. To override the arguments, run with "GORELEASER_ARGS=...". When run as a github action from a tag, this target will publish a full release.
+release: $(GORELEASER) #EXHELP Runs goreleaser. By default, this will run only as a snapshot and will not publish any artifacts unless it is run with different arguments. To override the arguments, run with "GORELEASER_ARGS=...". When run as a github action from a tag, this target will publish a full release.
 	CONTROLLER_IMAGE=$(IMAGE_TAG_BASE) BUNDLE_IMAGE=$(BUNDLE_IMG_BASE) CATALOG_IMAGE=$(CATALOG_IMG_BASE) TAG=$(TAG) $(GORELEASER) $(GORELEASER_ARGS)
